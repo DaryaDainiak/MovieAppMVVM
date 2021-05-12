@@ -156,8 +156,6 @@ extension MovieListViewController: UITableViewDataSource {
             .dequeueReusableCell(withIdentifier: Consts.identifier, for: indexPath) as? MovieTableViewCell
         else { return UITableViewCell() }
         let cellViewModel = viewModel.cellViewModel(for: indexPath)
-//        let movieInfo = viewModel.movieArray[indexPath.row]
-//        cell.fill(movie: movieInfo)
         cell.viewModel = cellViewModel
 
         return cell
@@ -173,34 +171,19 @@ extension MovieListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let dvc = DetailsViewController()
-        dvc.selectedFilm = movieArray[indexPath.row]
+        guard let viewModel = viewModel else { return }
+        viewModel.selectedRow(atIndexPath: indexPath)
+        guard let detailsViewModel = viewModel.viewModelForSelectedRow() else { return }
+
+        let dvc = DetailsViewController(viewModel: detailsViewModel)
         navigationController?.pushViewController(dvc, animated: true)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == movieArray.count - 2 {
-            currentPage += 1
+        if indexPath.row == viewModel.numberOfRows() - 2 {
+            let type = viewModel.type
+            viewModel.currentPage += 1
             viewModel.getMovies(type: type, currentPage: currentPage)
         }
     }
 }
-
-// extension MovieListViewController: MovieListProtocol {
-//    func success() {
-//        DispatchQueue.main.async {
-//            self.errorLabel.isHidden = true
-//            self.moviesTableView.isHidden = false
-//            self.moviesTableView.reloadData()
-//        }
-//    }
-//
-//    func failure(error: Error) {
-//        DispatchQueue.main.async {
-//            self.errorLabel.isHidden = false
-//            self.moviesTableView.isHidden = true
-//            self.view.bringSubviewToFront(self.errorLabel)
-//        }
-//        print("Error serialization json \(error)", error.localizedDescription)
-//    }
-// }

@@ -34,7 +34,7 @@ final class DetailsViewController: UIViewController {
 
     private lazy var titleLable: UILabel = {
         let title = UILabel(frame: .zero)
-        title.text = selectedFilm?.nameRu
+        title.text = viewModel?.selectedMovie?.nameRu
         title.textAlignment = .center
         title.textColor = .black
         title.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -54,13 +54,30 @@ final class DetailsViewController: UIViewController {
         return description
     }()
 
+    var viewModel: DetailsViewModelProtocol?
+
     // MARK: - Lifecycle
+
+    init(viewModel: DetailsViewModelProtocol) {
+        self.viewModel = viewModel
+
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
+        bindViewModel()
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpScrollView()
-        fetchDescription(id: selectedFilm?.filmId)
+        viewModel?.getMovieDetails()
         setUpContents()
         setUpScrollContentSize()
     }
@@ -74,6 +91,26 @@ final class DetailsViewController: UIViewController {
 
     // MARK: - Private Methods
 
+    private func bindViewModel() {
+        viewModel?.dataUpdated = {
+            DispatchQueue.main.async {
+                if let description = self.viewModel?.movieDetails?.data.description {
+                    self.selectedDescription.text = description
+                    self.setUpScrollContentSize()
+                }
+            }
+        }
+
+        viewModel?.showError = { [weak self] error in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.selectedDescription.text = "Oops... Description is missing."
+                self.selectedDescription.textColor = .systemRed
+            }
+            print(error.localizedDescription)
+        }
+    }
+
     private func setUpScrollView() {
         view.addSubview(detailsScrollView)
         detailsScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,44 +121,16 @@ final class DetailsViewController: UIViewController {
         detailsScrollView.backgroundColor = .white
     }
 
-    private func fetchDescription(id: Int?) {
-        guard let id = id else { return }
-        let urlString = "https://kinopoiskapiunofficial.tech/api/v2.1/films/\(id)"
-        let components = URLComponents(string: urlString)
-        guard let url = components?.url else { return }
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["X-API-KEY": "36d1910f-1de8-413f-89dc-665968e24647"]
-        URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
-
-            guard let data = data,
-                  let self = self
-            else { return }
-            do {
-                let film = try JSONDecoder().decode(FilmDetails.self, from: data)
-
-                DispatchQueue.main.async {
-                    if let description = film.data.description {
-                        self.selectedDescription.text = description
-                        self.setUpScrollContentSize()
-                    } else {
-                        self.selectedDescription.text = "Oops... Description is missing."
-                        self.selectedDescription.textColor = .systemRed
-                    }
-                }
-            } catch {
-                print("Error serialization json \(error)")
-            }
-        }.resume()
-    }
-
     private func setUpContents() {
         DispatchQueue.global().async { [weak self] in
-            guard let selectedFilm = self?.selectedFilm else { return }
-            guard let imageURL = URL(string: selectedFilm.posterUrlPreview) else { return }
+
+            guard let self = self,
+                  let imageName = self.viewModel?.selectedMovie?.posterUrlPreview,
+                  let imageURL = URL(string: imageName) else { return }
             if let data = try? Data(contentsOf: imageURL) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        self?.selectedImageView.image = image
+                        self.selectedImageView.image = image
                     }
                 }
             }

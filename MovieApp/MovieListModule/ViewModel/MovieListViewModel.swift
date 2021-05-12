@@ -12,6 +12,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     // MARK: - Private Properties
 
     private let networkService: NetworkServiceProtocol!
+    private var selectedIndexPath: IndexPath?
 
     // MARK: - Public Properties
 
@@ -28,7 +29,6 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         networkService: NetworkServiceProtocol,
         type: String
     ) {
-//        self.view = view
         self.networkService = networkService
         self.type = type
     }
@@ -44,6 +44,15 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         return MovieListCellViewModel(movie: movie)
     }
 
+    func viewModelForSelectedRow() -> DetailsViewModelProtocol? {
+        guard let path = selectedIndexPath?.row else { return nil }
+        return DetailsViewModel(networkService: networkService, selectedMovie: movieArray[path])
+    }
+
+    func selectedRow(atIndexPath indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+    }
+
     func getMovies(type: String, currentPage: Int) {
         networkService.fetchData(type: type, currentPage: currentPage) { [weak self] result in
             guard let self = self else { return }
@@ -51,15 +60,9 @@ final class MovieListViewModel: MovieListViewModelProtocol {
             case let .success(filmsApi):
                 let films = filmsApi.films
                 self.movieArray.append(contentsOf: films)
-//                DispatchQueue.main.async {
                 self.dataUpdated?()
-//                    self.view?.success()
-//                }
             case let .failure(error):
-//                DispatchQueue.main.async {
                 self.showError?(error)
-//                    self.view?.failure(error: error)
-//                }
             }
         }
     }

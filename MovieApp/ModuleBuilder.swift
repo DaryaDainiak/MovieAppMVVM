@@ -9,7 +9,7 @@ import UIKit
 
 protocol AssemblyBuilderProtocol {
     func createMovieListModule() -> UIViewController
-//    func createDetailsModule(selectedMovie: Film?) -> UIViewController
+    func createDetailsModule(selectedMovie: Film?) -> UIViewController
 }
 
 final class AssemblyModelBuilder: AssemblyBuilderProtocol {
@@ -30,16 +30,15 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
 
     // MARK: - Public Methods
 
-//    func createDetailsModule(selectedMovie: Film?) -> UIViewController {
-//        let view = DetailsViewController()
-//        let networkService = NetworkService()
-//        let presenter = DetailsPresenter(
-//            view: view,
-//            networkService: networkService,
-//            router: router,
-//            selectedMovie: selectedMovie
-//        )
-//        view.presenter = presenter
-//        return view
-//    }
+    func createDetailsModule(selectedMovie: Film?) -> UIViewController {
+        let networkService = NetworkService()
+        let viewModel = DetailsViewModel(
+            networkService: networkService,
+            selectedMovie: selectedMovie
+        )
+        let view = DetailsViewController(viewModel: viewModel)
+
+        view.viewModel = viewModel
+        return view
+    }
 }

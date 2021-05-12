@@ -15,13 +15,14 @@ protocol MovieListViewModelProtocol: AnyObject {
     var type: String { get set }
 
     init(
-        //        view: MovieListProtocol,
         networkService: NetworkServiceProtocol,
         type: String
     )
-
     func numberOfRows() -> Int
     func cellViewModel(for indexPath: IndexPath) -> MovieListCellViewModelProtocol?
+
+    func viewModelForSelectedRow() -> DetailsViewModelProtocol?
+    func selectedRow(atIndexPath indexPath: IndexPath)
 
     func getMovies(type: String, currentPage: Int)
     func tapOnMovie(movie: Film?)
