@@ -107,6 +107,26 @@ final class MovieTableViewCell: UITableViewCell {
         return rating
     }()
 
+    weak var viewModel: MovieListCellViewModelProtocol? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            titleLabel.text = viewModel.title
+            genresLabel.text = viewModel.genres
+            countriesLabel.text = viewModel.countries
+            ratingButton.setTitle(viewModel.rating, for: .normal)
+            DispatchQueue.global().async { [weak self] in
+                guard let imageURL = URL(string: viewModel.image) else { return }
+                if let data = try? Data(contentsOf: imageURL) {
+                    if let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            self?.movieImage.image = image
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Lifecycle
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -131,36 +151,35 @@ final class MovieTableViewCell: UITableViewCell {
     // MARK: - Public Methods
 
     func fill(movie: Film) {
-        DispatchQueue.global().async { [weak self] in
-            guard let imageURL = URL(string: movie.posterUrlPreview) else { return }
-            if let data = try? Data(contentsOf: imageURL) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.movieImage.image = image
-                    }
-                }
-            }
-        }
-        titleLabel.text = movie.nameRu
-        var genres: String = ""
-        for index in 0 ..< movie.genres.count {
-            genres += movie.genres[index].genre
-            if index < movie.genres.count - 1 {
-                genres += ", "
-            }
-        }
-        genresLabel.text = "Жанр: \(genres)"
-        //        descriptionLabel.text = movie.description
+//        DispatchQueue.global().async { [weak self] in
+//            guard let imageURL = URL(string: movie.posterUrlPreview) else { return }
+//            if let data = try? Data(contentsOf: imageURL) {
+//                if let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        self?.movieImage.image = image
+//                    }
+//                }
+//            }
+//        }
+//        titleLabel.text = movie.nameRu
+//        var genres: String = ""
+//        for index in 0 ..< movie.genres.count {
+//            genres += movie.genres[index].genre
+//            if index < movie.genres.count - 1 {
+//                genres += ", "
+//            }
+//        }
+//        genresLabel.text = "Жанр: \(genres)"
 
-        var countries: String = ""
-        for index in 0 ..< movie.countries.count {
-            countries += movie.countries[index].country
-            if index < movie.countries.count - 1 {
-                countries += ", "
-            }
-        }
-        countriesLabel.text = "Страны: \(countries)"
-        ratingButton.setTitle(movie.rating, for: .normal)
+//        var countries: String = ""
+//        for index in 0 ..< movie.countries.count {
+//            countries += movie.countries[index].country
+//            if index < movie.countries.count - 1 {
+//                countries += ", "
+//            }
+//        }
+//        countriesLabel.text = "Страны: \(countries)"
+//        ratingButton.setTitle(movie.rating, for: .normal)
     }
 
     // MARK: - Private Methods
