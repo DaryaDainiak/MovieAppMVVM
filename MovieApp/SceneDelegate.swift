@@ -14,10 +14,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
 
-            let vc = MovieListViewController()
-            let navController = UINavigationController(rootViewController: vc)
+            let assemblyBuilder = AssemblyModelBuilder()
+            let movieListVC = assemblyBuilder.createMovieListModule()
+            let navigationController = UINavigationController(rootViewController: movieListVC)
 
-            window?.rootViewController = navController
+            window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }
 

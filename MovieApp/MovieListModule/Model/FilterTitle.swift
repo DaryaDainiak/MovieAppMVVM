@@ -8,7 +8,7 @@
 import Foundation
 
 /// Filter Model
-struct DataHelper {
+struct FilterTitle {
     var filterArray: [Filter] = []
 
     init() {
