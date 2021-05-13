@@ -5,6 +5,7 @@
 //  Created by Дайняк Дарья Станиславовна on 08.03.2021.
 //
 
+import CoreData
 import UIKit
 
 /// MovieListViewController
@@ -44,6 +45,7 @@ final class MovieListViewController: UIViewController {
     private var movieArray: [Film] = []
     private var currentPage = 1
     private var type: String = ""
+    var context: NSManagedObjectContext!
 
     var viewModel: MovieListViewModelProtocol!
     weak var coordinator: MainCoordinator?
