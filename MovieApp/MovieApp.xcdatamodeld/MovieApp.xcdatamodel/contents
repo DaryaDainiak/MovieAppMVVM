@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+    <entity name="CountryItem" representedClassName="CountryItem" syncable="YES">
+        <attribute name="country" attributeType="String"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FilmItem" inverseName="toCountries" inverseEntity="FilmItem"/>
+    </entity>
+    <entity name="FilmItem" representedClassName="FilmItem" syncable="YES">
+        <attribute name="countries" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <attribute name="filmId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="genres" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <attribute name="nameRu" attributeType="String"/>
+        <attribute name="posterUrlPreview" attributeType="Binary"/>
+        <attribute name="rating" attributeType="String"/>
+        <attribute name="year" attributeType="String"/>
+        <relationship name="toCountries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountryItem" inverseName="newRelationship" inverseEntity="CountryItem"/>
+        <relationship name="toGenres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreItem" inverseName="newRelationship" inverseEntity="GenreItem"/>
+    </entity>
+    <entity name="GenreItem" representedClassName="GenreItem" syncable="YES">
+        <attribute name="genre" attributeType="String"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FilmItem" inverseName="toGenres" inverseEntity="FilmItem"/>
+    </entity>
+    <elements>
+        <element name="CountryItem" positionX="21.42578125" positionY="262.9698486328125" width="128" height="73"/>
+        <element name="FilmItem" positionX="-209.8851928710938" positionY="100.7068786621094" width="118.3477783203125" height="178"/>
+        <element name="GenreItem" positionX="23.10394287109375" positionY="167.5299682617188" width="128" height="73"/>
+    </elements>
 </model>
