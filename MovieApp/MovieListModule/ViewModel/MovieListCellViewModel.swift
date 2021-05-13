@@ -16,7 +16,7 @@ class MovieListCellViewModel: MovieListCellViewModelProtocol {
     }
 
     var title: String {
-        return String(describing: movie.nameRu)
+        return movie.nameRu ?? ""
     }
 
     var genres: String {
