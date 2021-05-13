@@ -55,6 +55,7 @@ final class DetailsViewController: UIViewController {
     }()
 
     var viewModel: DetailsViewModelProtocol?
+    weak var coordinator: MainCoordinator?
 
     // MARK: - Lifecycle
 

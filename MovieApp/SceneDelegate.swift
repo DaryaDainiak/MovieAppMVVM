@@ -8,15 +8,21 @@ import UIKit
 
 ///
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var coordinator: MainCoordinator?
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
+            
+            var coreDataStack = CoreDataStack()
             window = UIWindow(windowScene: windowScene)
 
             let assemblyBuilder = AssemblyModelBuilder()
             let movieListVC = assemblyBuilder.createMovieListModule()
             let navigationController = UINavigationController(rootViewController: movieListVC)
+
+            coordinator = MainCoordinator(navigationController: navigationController)
+            coordinator?.start()
 
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()

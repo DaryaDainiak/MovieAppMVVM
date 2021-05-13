@@ -8,14 +8,14 @@
 import UIKit
 
 protocol AssemblyBuilderProtocol {
-    func createMovieListModule() -> UIViewController
-    func createDetailsModule(selectedMovie: Film?) -> UIViewController
+    func createMovieListModule() -> MovieListViewController
+    func createDetailsModule(selectedMovie: Film) -> DetailsViewController
 }
 
 final class AssemblyModelBuilder: AssemblyBuilderProtocol {
     // MARK: - Public Methods
 
-    func createMovieListModule() -> UIViewController {
+    func createMovieListModule() -> MovieListViewController {
         let networkService = NetworkService()
         let filter = FilterTitle()
         let type = filter.filterArray[0].parameter ?? ""
@@ -30,7 +30,7 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
 
     // MARK: - Public Methods
 
-    func createDetailsModule(selectedMovie: Film?) -> UIViewController {
+    func createDetailsModule(selectedMovie: Film) -> DetailsViewController {
         let networkService = NetworkService()
         let viewModel = DetailsViewModel(
             networkService: networkService,

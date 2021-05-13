@@ -29,6 +29,9 @@
 		80AEF57C264ACCA30087E304 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF57B264ACCA30087E304 /* NetworkService.swift */; };
 		80AEF5BB264B96AD0087E304 /* MovieListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF5BA264B96AD0087E304 /* MovieListViewModelProtocol.swift */; };
 		80AEF5BE264B96D90087E304 /* MovieListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF5BD264B96D90087E304 /* MovieListProtocol.swift */; };
+		80B603A0264D21E60049BB58 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6039F264D21E60049BB58 /* CoreDataStack.swift */; };
+		80F59C18264C274800CD4F00 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F59C17264C274800CD4F00 /* Coordinator.swift */; };
+		80F59C1B264C284800CD4F00 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F59C1A264C284800CD4F00 /* MainCoordinator.swift */; };
 		880A204B0BB674D2DDA35C00 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899E35BA5323D98A278381C3 /* Pods_MovieApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,9 @@
 		80AEF57B264ACCA30087E304 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		80AEF5BA264B96AD0087E304 /* MovieListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelProtocol.swift; sourceTree = "<group>"; };
 		80AEF5BD264B96D90087E304 /* MovieListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocol.swift; sourceTree = "<group>"; };
+		80B6039F264D21E60049BB58 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		80F59C17264C274800CD4F00 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		80F59C1A264C284800CD4F00 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		899E35BA5323D98A278381C3 /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,7 +103,10 @@
 			children = (
 				21D43F5125F0E09C0095AD0B /* AppDelegate.swift */,
 				21D43F5325F0E09C0095AD0B /* SceneDelegate.swift */,
+				80B6039F264D21E60049BB58 /* CoreDataStack.swift */,
 				80771229264BE19100C184FD /* ModuleBuilder.swift */,
+				80F59C17264C274800CD4F00 /* Coordinator.swift */,
+				80F59C1A264C284800CD4F00 /* MainCoordinator.swift */,
 				80AEF57E264ACCB00087E304 /* ServiceLayer */,
 				80AEF566264AADBC0087E304 /* MovieListModule */,
 				80AEF56D264AAEBD0087E304 /* DetailsModule */,
@@ -354,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80AEF5BE264B96D90087E304 /* MovieListProtocol.swift in Sources */,
+				80F59C1B264C284800CD4F00 /* MainCoordinator.swift in Sources */,
 				21EFD45625F7AD8F00DE1ACD /* MovieTableViewCell.swift in Sources */,
 				21EFD42F25F68C3C00DE1ACD /* FilmsApi.swift in Sources */,
 				21ACD47825FA39A00084DEAF /* FilmDetails.swift in Sources */,
@@ -365,9 +375,11 @@
 				80771227264BD08700C184FD /* MovieListCellViewModel.swift in Sources */,
 				8077122A264BE19100C184FD /* ModuleBuilder.swift in Sources */,
 				21EFD43C25F693A500DE1ACD /* FilterCollectionView.swift in Sources */,
+				80F59C18264C274800CD4F00 /* Coordinator.swift in Sources */,
 				21D43F5625F0E09C0095AD0B /* MovieListViewController.swift in Sources */,
 				80AEF563264AAD950087E304 /* MovieListViewModel.swift in Sources */,
 				80771224264BCE5500C184FD /* MovieListCellViewModelProtocol.swift in Sources */,
+				80B603A0264D21E60049BB58 /* CoreDataStack.swift in Sources */,
 				21EFD43525F68F3B00DE1ACD /* FilterTitle.swift in Sources */,
 				21D43F5225F0E09C0095AD0B /* AppDelegate.swift in Sources */,
 				21EFD43F25F6973D00DE1ACD /* FilterCollectionViewCell.swift in Sources */,

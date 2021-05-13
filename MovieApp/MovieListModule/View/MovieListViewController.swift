@@ -46,6 +46,7 @@ final class MovieListViewController: UIViewController {
     private var type: String = ""
 
     var viewModel: MovieListViewModelProtocol!
+    weak var coordinator: MainCoordinator?
 
     // MARK: - Lifecycle
 
@@ -171,12 +172,15 @@ extension MovieListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let viewModel = viewModel else { return }
-        viewModel.selectedRow(atIndexPath: indexPath)
-        guard let detailsViewModel = viewModel.viewModelForSelectedRow() else { return }
+//        guard let viewModel = viewModel else { return }
+//        viewModel.selectedRow(atIndexPath: indexPath)
+//        guard let detailsViewModel = viewModel.viewModelForSelectedRow() else { return }
 
-        let dvc = DetailsViewController(viewModel: detailsViewModel)
-        navigationController?.pushViewController(dvc, animated: true)
+        let selectedMoview = viewModel.movieArray[indexPath.row]
+
+        coordinator?.detailsView(film: selectedMoview)
+//        let dvc = DetailsViewController(viewModel: detailsViewModel)
+//        navigationController?.pushViewController(dvc, animated: true)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
