@@ -14,6 +14,11 @@
         <attribute name="year" optional="YES" attributeType="String"/>
         <relationship name="country" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountryItem" inverseName="film" inverseEntity="CountryItem"/>
         <relationship name="genre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreItem" inverseName="film" inverseEntity="GenreItem"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="filmId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="GenreItem" representedClassName="GenreItem" syncable="YES">
         <attribute name="genres" optional="YES" attributeType="String"/>

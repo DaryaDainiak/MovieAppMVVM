@@ -17,7 +17,7 @@ class NetworkService: NetworkServiceProtocol {
     func fetchData(type: String, currentPage: Int, completion: @escaping (Result<[Film], Error>) -> Void) {
         if !Reachability.isConnectedToNetwork() {
             let filmItems = CoreDataService.shared.getFilmItems()
-            let films = filmItems.map { Film(from: $0) }
+            let films = filmItems.map { Film(from: $0) }.sorted(by: { $0.nameRu ?? "" < $1.nameRu ?? "" })
             completion(.success(films))
             return
         }
@@ -33,10 +33,12 @@ class NetworkService: NetworkServiceProtocol {
             guard let data = data else { return }
             do {
                 let filmsApi = try JSONDecoder().decode(FilmsApi.self, from: data)
+                
+                let sortedFilms = filmsApi.films.sorted(by: { $0.nameRu ?? "" < $1.nameRu ?? "" })
 
-                completion(.success(filmsApi.films))
+                completion(.success(sortedFilms))
                 DispatchQueue.main.async {
-                    CoreDataService.shared.save(films: filmsApi.films)
+                    CoreDataService.shared.save(films: sortedFilms)
                 }
             } catch {
                 completion(.failure(error))
