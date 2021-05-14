@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator?.start()
 
             movieListVC.context = coreDataStack.persistentContainer.viewContext
+            CoreDataService.shared.managedContext = coreDataStack.persistentContainer.viewContext
 
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()

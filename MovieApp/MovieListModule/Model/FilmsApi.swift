@@ -22,7 +22,7 @@ struct Film: Decodable {
     let countries: [Country]
     let year: String
     let rating: String
-    let filmId: Int
+    let filmId: Int32
 }
 
 /// Genre
