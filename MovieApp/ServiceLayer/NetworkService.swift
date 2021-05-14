@@ -71,8 +71,8 @@ private extension Film {
             posterUrlPreview: filmItem.posterUrlPreview ?? "",
             nameRu: filmItem.nameRu,
             description: filmItem.description,
-            genres: [],
-            countries: [],
+            genres: filmItem.genres?.map { Genre(genre: $0) } ?? [],
+            countries: filmItem.countries?.map { Country(country: $0) } ?? [],
             year: filmItem.year ?? "",
             rating: filmItem.rating ?? "",
             filmId: filmItem.filmId

@@ -116,18 +116,8 @@ final class MovieTableViewCell: UITableViewCell {
             countriesLabel.text = viewModel.countries
             ratingButton.setTitle(viewModel.rating, for: .normal)
 
-            DispatchQueue.global().async { [weak self] in
-                guard let self = self,
-                      let imageURL = URL(string: viewModel.image) else { return }
-                self.movieImage.kf.setImage(with: imageURL)
-                //                if let data = try? Data(contentsOf: imageURL) {
-                //                    if let image = UIImage(data: data) {
-                //                        DispatchQueue.main.async {
-                //                            self?.movieImage.image = image
-                //                        }
-                //                    }
-                //                }
-            }
+            guard let imageURL = URL(string: viewModel.image) else { return }
+            self.movieImage.kf.setImage(with: imageURL)
         }
     }
 
