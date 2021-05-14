@@ -99,19 +99,19 @@ custom_rules:
     message: "Используй Id"
     severity: error
 
-  custom_wrong_url:
-    name: "Неверное наименование URL"
-    excluded: "Project112/DTO"
-    regex: "(var|let) \\w*Url( |:)"
-    message: "Используй URL"
-    severity: error
-  custom_void_return:
-    name: "Неверное использование Void"
-    regex: "([(](Void)?[)] ?-> ?Void)"
-    match_kinds:
-      - typeidentifier
-    message: "Используй '() -> ()'"
-    severity: error
+#  custom_wrong_url:
+#    name: "Неверное наименование Url"
+#    excluded: "Project112/DTO"
+#    regex: "(var|let) \\w*URL( |:)"
+#    message: "Используй Url"
+#    severity: error
+#  custom_void_return:
+#    name: "Неверное использование Void"
+#    regex: "([(](Void)?[)] ?-> ?Void)"
+#    match_kinds:
+#      - typeidentifier
+#    message: "Используй '() -> ()'"
+#    severity: error
 
   custom_empty_string:
     name: "Неверная проверка строки на пустоту"

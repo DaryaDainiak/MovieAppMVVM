@@ -5,6 +5,7 @@
 //  Created by Дайняк Дарья Станиславовна on 09.03.2021.
 //
 
+import Kingfisher
 import UIKit
 
 /// MovieTableViewCell
@@ -114,16 +115,9 @@ final class MovieTableViewCell: UITableViewCell {
             genresLabel.text = viewModel.genres
             countriesLabel.text = viewModel.countries
             ratingButton.setTitle(viewModel.rating, for: .normal)
-            DispatchQueue.global().async { [weak self] in
-                guard let imageURL = URL(string: viewModel.image) else { return }
-                if let data = try? Data(contentsOf: imageURL) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self?.movieImage.image = image
-                        }
-                    }
-                }
-            }
+
+            guard let imageURL = URL(string: viewModel.image) else { return }
+            self.movieImage.kf.setImage(with: imageURL)
         }
     }
 
@@ -148,39 +142,14 @@ final class MovieTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    override func prepareForReuse() {
+        movieImage.kf.cancelDownloadTask()
+    }
+
     // MARK: - Public Methods
 
-    func fill(movie: Film) {
-//        DispatchQueue.global().async { [weak self] in
-//            guard let imageURL = URL(string: movie.posterUrlPreview) else { return }
-//            if let data = try? Data(contentsOf: imageURL) {
-//                if let image = UIImage(data: data) {
-//                    DispatchQueue.main.async {
-//                        self?.movieImage.image = image
-//                    }
-//                }
-//            }
-//        }
-//        titleLabel.text = movie.nameRu
-//        var genres: String = ""
-//        for index in 0 ..< movie.genres.count {
-//            genres += movie.genres[index].genre
-//            if index < movie.genres.count - 1 {
-//                genres += ", "
-//            }
-//        }
-//        genresLabel.text = "Жанр: \(genres)"
-
-//        var countries: String = ""
-//        for index in 0 ..< movie.countries.count {
-//            countries += movie.countries[index].country
-//            if index < movie.countries.count - 1 {
-//                countries += ", "
-//            }
-//        }
-//        countriesLabel.text = "Страны: \(countries)"
-//        ratingButton.setTitle(movie.rating, for: .normal)
-    }
+//    func fill(movie: Film) {
+//    }
 
     // MARK: - Private Methods
 

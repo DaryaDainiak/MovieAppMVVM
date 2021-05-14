@@ -5,6 +5,7 @@
 //  Created by Дайняк Дарья Станиславовна on 08.03.2021.
 //
 
+import CoreData
 import UIKit
 
 /// MovieListViewController
@@ -42,8 +43,7 @@ final class MovieListViewController: UIViewController {
     }()
 
     private var movieArray: [Film] = []
-    private var currentPage = 1
-    private var type: String = ""
+    var context: NSManagedObjectContext!
 
     var viewModel: MovieListViewModelProtocol!
     weak var coordinator: MainCoordinator?
@@ -72,7 +72,7 @@ final class MovieListViewController: UIViewController {
         setUpMoviesTableView()
         setUpErrorView()
         setUpDelegate()
-        type = filterTitle.filterArray[0].parameter ?? ""
+//        type = filterTitle.filterArray[0].parameter ?? ""
         viewModel.getMovies(type: viewModel.type, currentPage: viewModel.currentPage)
     }
 
@@ -109,9 +109,9 @@ final class MovieListViewController: UIViewController {
         filterCollectionView.tapClosure = { [weak self] index in
             guard let self = self else { return }
 
-            self.type = self.filterTitle.filterArray[index].parameter ?? ""
-            self.currentPage = 1
-            self.movieArray.removeAll()
+            self.viewModel.type = self.filterTitle.filterArray[index].parameter ?? ""
+            self.viewModel.currentPage = 1
+            self.viewModel.movieArray.removeAll()
             self.viewModel.getMovies(type: self.viewModel.type, currentPage: self.viewModel.currentPage)
         }
         view.addSubview(filterCollectionView)
@@ -187,7 +187,7 @@ extension MovieListViewController: UITableViewDelegate {
         if indexPath.row == viewModel.numberOfRows() - 2 {
             let type = viewModel.type
             viewModel.currentPage += 1
-            viewModel.getMovies(type: type, currentPage: currentPage)
+            viewModel.getMovies(type: type, currentPage: viewModel.currentPage)
         }
     }
 }

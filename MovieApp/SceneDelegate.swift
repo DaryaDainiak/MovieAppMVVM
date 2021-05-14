@@ -10,11 +10,10 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var coordinator: MainCoordinator?
     var window: UIWindow?
+    let coreDataStack = CoreDataStack()
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
-            
-            var coreDataStack = CoreDataStack()
             window = UIWindow(windowScene: windowScene)
 
             let assemblyBuilder = AssemblyModelBuilder()
@@ -23,6 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             coordinator = MainCoordinator(navigationController: navigationController)
             coordinator?.start()
+
+            movieListVC.context = coreDataStack.persistentContainer.viewContext
+            CoreDataService.shared.managedContext = coreDataStack.persistentContainer.viewContext
 
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
@@ -52,5 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        coreDataStack.saveContext()
     }
 }

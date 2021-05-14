@@ -57,8 +57,8 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         networkService.fetchData(type: type, currentPage: currentPage) { [weak self] result in
             guard let self = self else { return }
             switch result {
-            case let .success(filmsApi):
-                let films = filmsApi.films
+            case let .success(films):
+                let films = films
                 self.movieArray.append(contentsOf: films)
                 self.dataUpdated?()
             case let .failure(error):
