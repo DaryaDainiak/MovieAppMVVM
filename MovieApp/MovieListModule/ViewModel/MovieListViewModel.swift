@@ -22,6 +22,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
 
     public var dataUpdated: (() -> ())?
     public var showError: ((Error) -> ())?
+    public var goToDetails: ((Film) -> ())?
 
     // MARK: - Lifecycle
 

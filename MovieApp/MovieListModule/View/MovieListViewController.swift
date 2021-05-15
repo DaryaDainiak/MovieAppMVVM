@@ -42,11 +42,7 @@ final class MovieListViewController: UIViewController {
         return label
     }()
 
-    private var movieArray: [Film] = []
-    var context: NSManagedObjectContext!
-
     var viewModel: MovieListViewModelProtocol!
-    weak var coordinator: MainCoordinator?
 
     // MARK: - Lifecycle
 
@@ -177,8 +173,8 @@ extension MovieListViewController: UITableViewDelegate {
 //        guard let detailsViewModel = viewModel.viewModelForSelectedRow() else { return }
 
         let selectedMoview = viewModel.movieArray[indexPath.row]
-
-        coordinator?.detailsView(film: selectedMoview)
+        viewModel.goToDetails?(selectedMoview)
+//        coordinator?.detailsView(film: selectedMoview)
 //        let dvc = DetailsViewController(viewModel: detailsViewModel)
 //        navigationController?.pushViewController(dvc, animated: true)
     }

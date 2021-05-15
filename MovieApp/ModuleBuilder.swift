@@ -15,6 +15,12 @@ protocol AssemblyBuilderProtocol {
 final class AssemblyModelBuilder: AssemblyBuilderProtocol {
     // MARK: - Public Methods
 
+    let coordinator: MainCoordinator
+
+    init(coordinator: MainCoordinator) {
+        self.coordinator = coordinator
+    }
+
     func createMovieListModule() -> MovieListViewController {
         let networkService = NetworkService()
         let filter = FilterTitle()
@@ -23,6 +29,9 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
             networkService: networkService,
             type: type
         )
+        viewModel.goToDetails = { [weak self] film in
+            self?.coordinator.detailsView(film: film)
+        }
         let view = MovieListViewController(viewModel: viewModel)
         view.viewModel = viewModel
         return view
@@ -36,6 +45,7 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
             networkService: networkService,
             selectedMovie: selectedMovie
         )
+
         let view = DetailsViewController(viewModel: viewModel)
 
         view.viewModel = viewModel
