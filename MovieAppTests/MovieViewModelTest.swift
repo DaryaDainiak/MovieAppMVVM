@@ -40,9 +40,6 @@ class MovieViewModelTest: XCTestCase {
     var movieArray: [Film] = []
 
     override func setUpWithError() throws {
-//        let navigation = UINavigationController()
-//        let assembly = AssemblyModelBuilder()
-//        let coordinator = MainCoordinator(navigationController: navigation)
         let movie = Film(
             posterUrlPreview: "Foo",
             nameRu: "Baz",

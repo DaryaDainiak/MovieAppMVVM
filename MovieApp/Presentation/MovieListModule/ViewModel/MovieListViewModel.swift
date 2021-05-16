@@ -9,11 +9,6 @@ import Foundation
 
 ///
 final class MovieListViewModel: MovieListViewModelProtocol {
-    // MARK: - Private Properties
-
-    private let networkService: NetworkServiceProtocol!
-    private var selectedIndexPath: IndexPath?
-
     // MARK: - Public Properties
 
     var currentPage = 1
@@ -23,6 +18,11 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     public var dataUpdated: (() -> ())?
     public var showError: ((Error) -> ())?
     public var goToDetails: ((Film) -> ())?
+
+    // MARK: - Private Properties
+
+    private let networkService: NetworkServiceProtocol!
+    private var selectedIndexPath: IndexPath?
 
     // MARK: - Lifecycle
 
@@ -68,7 +68,5 @@ final class MovieListViewModel: MovieListViewModelProtocol {
         }
     }
 
-    func tapOnMovie(movie: Film?) {
-//        router?.showDetails(selectedMovie: movie)
-    }
+    func tapOnMovie(movie: Film?) {}
 }

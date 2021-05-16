@@ -27,7 +27,6 @@ class CoordinatorTest: XCTestCase {
     override func setUpWithError() throws {
         mockNavigationController = MockNavigationController()
         coordinator = MainCoordinator(navigationController: mockNavigationController)
-//        assemblyBuilder = AssemblyModelBuilder(coordinator: coordinator)
     }
 
     override func tearDownWithError() throws {

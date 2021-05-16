@@ -10,6 +10,10 @@ import UIKit
 
 /// MovieListViewController
 final class MovieListViewController: UIViewController {
+    // MARK: - Public Properties
+
+    var viewModel: MovieListViewModelProtocol!
+
     // MARK: - Private Properties
 
     private struct Consts {
@@ -42,8 +46,6 @@ final class MovieListViewController: UIViewController {
         return label
     }()
 
-    var viewModel: MovieListViewModelProtocol!
-
     // MARK: - Lifecycle
 
     init(viewModel: MovieListViewModelProtocol) {
@@ -71,7 +73,6 @@ final class MovieListViewController: UIViewController {
         setUpMoviesTableView()
         setUpErrorView()
         setUpDelegate()
-//        type = filterTitle.filterArray[0].parameter ?? ""
         viewModel.getMovies(type: viewModel.type, currentPage: viewModel.currentPage)
     }
 

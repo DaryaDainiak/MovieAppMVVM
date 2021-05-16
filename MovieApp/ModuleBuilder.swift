@@ -13,13 +13,15 @@ protocol AssemblyBuilderProtocol {
 }
 
 final class AssemblyModelBuilder: AssemblyBuilderProtocol {
-    // MARK: - Public Methods
+    // MARK: - Public Properties
 
     let coordinator: MainCoordinator
 
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
     }
+
+    // MARK: - Public Methods
 
     func createMovieListModule() -> MovieListViewController {
         let networkService = NetworkService()
@@ -36,8 +38,6 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
         view.viewModel = viewModel
         return view
     }
-
-    // MARK: - Public Methods
 
     func createDetailsModule(selectedMovie: Film) -> DetailsViewController {
         let networkService = NetworkService()

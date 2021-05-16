@@ -13,7 +13,7 @@ protocol NetworkServiceProtocol {
 }
 
 ///
-class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
     func fetchData(type: String, currentPage: Int, completion: @escaping (Result<[Film], Error>) -> Void) {
         if !Reachability.isConnectedToNetwork() {
             let filmItems = CoreDataService.shared.getFilmItems()
@@ -66,6 +66,8 @@ class NetworkService: NetworkServiceProtocol {
         }.resume()
     }
 }
+
+// MARK: - Extension Film
 
 private extension Film {
     init(from filmItem: FilmItem) {

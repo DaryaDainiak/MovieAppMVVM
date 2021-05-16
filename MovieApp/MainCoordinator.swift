@@ -10,7 +10,12 @@ import UIKit
 
 ///
 class MainCoordinator: Coordinator {
+    // MARK: - Private Properties
+
     private var moduleBuilder: AssemblyModelBuilder?
+
+    // MARK: - Public Properties
+
     var childCoordinators: [Coordinator] = []
 
     var navigationController: UINavigationController
@@ -19,6 +24,8 @@ class MainCoordinator: Coordinator {
         self.navigationController = navigationController
         moduleBuilder = AssemblyModelBuilder(coordinator: self)
     }
+
+    // MARK: - Public Methods
 
     func start() {
         guard let movieVC = moduleBuilder?.createMovieListModule() else { return }

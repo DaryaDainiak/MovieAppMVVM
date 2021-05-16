@@ -54,6 +54,8 @@ final class DetailsViewController: UIViewController {
         return description
     }()
 
+    // MARK: - Public Properties
+
     var viewModel: DetailsViewModelProtocol?
     weak var coordinator: MainCoordinator?
 

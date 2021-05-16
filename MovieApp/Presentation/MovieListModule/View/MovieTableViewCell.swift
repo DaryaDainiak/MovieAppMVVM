@@ -10,6 +10,21 @@ import UIKit
 
 /// MovieTableViewCell
 final class MovieTableViewCell: UITableViewCell {
+    // MARK: - Public Properties
+
+    weak var viewModel: MovieListCellViewModelProtocol? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            titleLabel.text = viewModel.title
+            genresLabel.text = viewModel.genres
+            countriesLabel.text = viewModel.countries
+            ratingButton.setTitle(viewModel.rating, for: .normal)
+
+            guard let imageURL = URL(string: viewModel.image) else { return }
+            movieImage.kf.setImage(with: imageURL)
+        }
+    }
+
     // MARK: - Private Properties
 
     private struct Consts {
@@ -108,19 +123,6 @@ final class MovieTableViewCell: UITableViewCell {
         return rating
     }()
 
-    weak var viewModel: MovieListCellViewModelProtocol? {
-        willSet(viewModel) {
-            guard let viewModel = viewModel else { return }
-            titleLabel.text = viewModel.title
-            genresLabel.text = viewModel.genres
-            countriesLabel.text = viewModel.countries
-            ratingButton.setTitle(viewModel.rating, for: .normal)
-
-            guard let imageURL = URL(string: viewModel.image) else { return }
-            self.movieImage.kf.setImage(with: imageURL)
-        }
-    }
-
     // MARK: - Lifecycle
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -145,11 +147,6 @@ final class MovieTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         movieImage.kf.cancelDownloadTask()
     }
-
-    // MARK: - Public Methods
-
-//    func fill(movie: Film) {
-//    }
 
     // MARK: - Private Methods
 
