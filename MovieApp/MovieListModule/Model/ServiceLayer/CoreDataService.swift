@@ -10,9 +10,9 @@ import UIKit
 
 ///
 class CoreDataService {
-//    private init() {}
+    private init() {}
 
-//    static let shared = CoreDataService()
+    static let shared = CoreDataService()
     var managedContext: NSManagedObjectContext?
 
     func save(films: [Film]) {
@@ -23,6 +23,16 @@ class CoreDataService {
                 _ = FilmItem.make(from: $0, in: context)
             }
         }
+
+//        for film in films {
+//            guard let entity = NSEntityDescription.entity(
+//                forEntityName: "FilmItem",
+//                in: context
+//            ) else { return }
+//
+//            guard let filmItem = NSManagedObject(entity: entity, insertInto: context) as? FilmItem else { return }
+//
+//        }
     }
 
     func getFilmItems() -> [FilmItem] {
@@ -55,4 +65,14 @@ class CoreDataService {
             }
         }
     }
+
+//    static func findOrInsertFilm(in context: NSManagedObjectContext) -> Film? {
+//        guard let model = context.persistentStoreCoordinator?.managedObjectModel else {
+//            print("Model is not available in context!")
+//            assert(false)
+//            return nil
+//        }
+//        var film: Film?
+//        guard let fetchRequest = Film
+//    }
 }

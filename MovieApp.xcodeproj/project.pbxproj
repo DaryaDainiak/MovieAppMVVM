@@ -35,20 +35,20 @@
 		8077122A264BE19100C184FD /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80771229264BE19100C184FD /* ModuleBuilder.swift */; };
 		80AEF563264AAD950087E304 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF562264AAD950087E304 /* MovieListViewModel.swift */; };
 		80AEF577264AAF7C0087E304 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF576264AAF7C0087E304 /* DetailsViewModel.swift */; };
-		80AEF57C264ACCA30087E304 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF57B264ACCA30087E304 /* NetworkService.swift */; };
 		80AEF5BB264B96AD0087E304 /* MovieListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF5BA264B96AD0087E304 /* MovieListViewModelProtocol.swift */; };
 		80AEF5BE264B96D90087E304 /* MovieListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF5BD264B96D90087E304 /* MovieListProtocol.swift */; };
-		80B603A0264D21E60049BB58 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B6039F264D21E60049BB58 /* CoreDataStack.swift */; };
 		80B603A7264D2D2E0049BB58 /* MovieApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80B603A5264D2D2E0049BB58 /* MovieApp.xcdatamodeld */; };
 		80DC3465264D67E400859D7F /* FilmItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC345F264D67E400859D7F /* FilmItem+CoreDataClass.swift */; };
-		80DC3474264DC14200859D7F /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3473264DC14200859D7F /* CoreDataService.swift */; };
 		80DC3484264E4D8E00859D7F /* NSSetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3482264E4D8E00859D7F /* NSSetExtensions.swift */; };
 		80DC3485264E4D8E00859D7F /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3483264E4D8E00859D7F /* IntExtensions.swift */; };
 		80DC3489264E4D9E00859D7F /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3487264E4D9D00859D7F /* StringExtensions.swift */; };
 		80DC348A264E4D9E00859D7F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3488264E4D9D00859D7F /* Errors.swift */; };
 		80DC348D264E4DA900859D7F /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC348C264E4DA900859D7F /* DispatchQueue+Extensions.swift */; };
-		80DC349A264E76F600859D7F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC3499264E76F600859D7F /* Reachability.swift */; };
 		80DC34B1264E890600859D7F /* GenreItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC34AE264E890600859D7F /* GenreItem+CoreDataClass.swift */; };
+		80F2166C265198F600ED1182 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F21668265198F500ED1182 /* CoreDataStack.swift */; };
+		80F2166F265198F600ED1182 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2166B265198F500ED1182 /* Reachability.swift */; };
+		80F2168F2651994900ED1182 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F2168B2651994900ED1182 /* NetworkService.swift */; };
+		80F216A62651997500ED1182 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F216A22651997500ED1182 /* CoreDataService.swift */; };
 		80F59C18264C274800CD4F00 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F59C17264C274800CD4F00 /* Coordinator.swift */; };
 		80F59C1B264C284800CD4F00 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F59C1A264C284800CD4F00 /* MainCoordinator.swift */; };
 		880A204B0BB674D2DDA35C00 /* Pods_MovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899E35BA5323D98A278381C3 /* Pods_MovieApp.framework */; };
@@ -108,20 +108,20 @@
 		80771229264BE19100C184FD /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		80AEF562264AAD950087E304 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		80AEF576264AAF7C0087E304 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
-		80AEF57B264ACCA30087E304 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		80AEF5BA264B96AD0087E304 /* MovieListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelProtocol.swift; sourceTree = "<group>"; };
 		80AEF5BD264B96D90087E304 /* MovieListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListProtocol.swift; sourceTree = "<group>"; };
-		80B6039F264D21E60049BB58 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		80B603A6264D2D2E0049BB58 /* MovieApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieApp.xcdatamodel; sourceTree = "<group>"; };
 		80DC345F264D67E400859D7F /* FilmItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FilmItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		80DC3473264DC14200859D7F /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		80DC3482264E4D8E00859D7F /* NSSetExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSetExtensions.swift; sourceTree = "<group>"; };
 		80DC3483264E4D8E00859D7F /* IntExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		80DC3487264E4D9D00859D7F /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		80DC3488264E4D9D00859D7F /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		80DC348C264E4DA900859D7F /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
-		80DC3499264E76F600859D7F /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		80DC34AE264E890600859D7F /* GenreItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenreItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		80F21668265198F500ED1182 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		80F2166B265198F500ED1182 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		80F2168B2651994900ED1182 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		80F216A22651997500ED1182 /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		80F59C17264C274800CD4F00 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		80F59C1A264C284800CD4F00 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		899E35BA5323D98A278381C3 /* Pods_MovieApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +178,7 @@
 		21D43F5025F0E09C0095AD0B /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
+				80F216632651986F00ED1182 /* Presentation */,
 				21D43F5125F0E09C0095AD0B /* AppDelegate.swift */,
 				21D43F5325F0E09C0095AD0B /* SceneDelegate.swift */,
 				80771229264BE19100C184FD /* ModuleBuilder.swift */,
@@ -186,8 +187,6 @@
 				80DC3481264E4D7700859D7F /* Utils */,
 				80AEF57E264ACCB00087E304 /* ServiceLayer */,
 				80DC3402264D52E000859D7F /* CoreDataGenerated */,
-				80AEF566264AADBC0087E304 /* MovieListModule */,
-				80AEF56D264AAEBD0087E304 /* DetailsModule */,
 				21D43F5725F0E09C0095AD0B /* Main.storyboard */,
 				21D43F5A25F0E09E0095AD0B /* Assets.xcassets */,
 				21D43F5C25F0E09E0095AD0B /* LaunchScreen.storyboard */,
@@ -314,10 +313,10 @@
 		80AEF57E264ACCB00087E304 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				80AEF57B264ACCA30087E304 /* NetworkService.swift */,
-				80B6039F264D21E60049BB58 /* CoreDataStack.swift */,
-				80DC3473264DC14200859D7F /* CoreDataService.swift */,
-				80DC3499264E76F600859D7F /* Reachability.swift */,
+				80F216A22651997500ED1182 /* CoreDataService.swift */,
+				80F2168B2651994900ED1182 /* NetworkService.swift */,
+				80F21668265198F500ED1182 /* CoreDataStack.swift */,
+				80F2166B265198F500ED1182 /* Reachability.swift */,
 			);
 			name = ServiceLayer;
 			path = MovieListModule/Model/ServiceLayer;
@@ -346,6 +345,15 @@
 				80DC3482264E4D8E00859D7F /* NSSetExtensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		80F216632651986F00ED1182 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				80AEF56D264AAEBD0087E304 /* DetailsModule */,
+				80AEF566264AADBC0087E304 /* MovieListModule */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		82801E5D9FB3F5DA89D2D950 /* Pods */ = {
@@ -581,10 +589,10 @@
 				80AEF577264AAF7C0087E304 /* DetailsViewModel.swift in Sources */,
 				21EFD45025F79A9100DE1ACD /* DetailsViewController.swift in Sources */,
 				80AEF5BB264B96AD0087E304 /* MovieListViewModelProtocol.swift in Sources */,
-				80AEF57C264ACCA30087E304 /* NetworkService.swift in Sources */,
 				80771227264BD08700C184FD /* MovieListCellViewModel.swift in Sources */,
 				8077122A264BE19100C184FD /* ModuleBuilder.swift in Sources */,
 				21EFD43C25F693A500DE1ACD /* FilterCollectionView.swift in Sources */,
+				80F2166C265198F600ED1182 /* CoreDataStack.swift in Sources */,
 				80DC3489264E4D9E00859D7F /* StringExtensions.swift in Sources */,
 				80F59C18264C274800CD4F00 /* Coordinator.swift in Sources */,
 				80DC348A264E4D9E00859D7F /* Errors.swift in Sources */,
@@ -592,18 +600,18 @@
 				8068D22B264E98F10025EE83 /* CountryItem+CoreDataClass.swift in Sources */,
 				21D43F5625F0E09C0095AD0B /* MovieListViewController.swift in Sources */,
 				80AEF563264AAD950087E304 /* MovieListViewModel.swift in Sources */,
-				80DC3474264DC14200859D7F /* CoreDataService.swift in Sources */,
 				8068D22C264E98F10025EE83 /* CountryItem+CoreDataProperties.swift in Sources */,
 				80771224264BCE5500C184FD /* MovieListCellViewModelProtocol.swift in Sources */,
-				80B603A0264D21E60049BB58 /* CoreDataStack.swift in Sources */,
 				80DC3485264E4D8E00859D7F /* IntExtensions.swift in Sources */,
 				21EFD43525F68F3B00DE1ACD /* FilterTitle.swift in Sources */,
+				80F216A62651997500ED1182 /* CoreDataService.swift in Sources */,
 				21D43F5225F0E09C0095AD0B /* AppDelegate.swift in Sources */,
 				80DC34B1264E890600859D7F /* GenreItem+CoreDataClass.swift in Sources */,
 				21EFD43F25F6973D00DE1ACD /* FilterCollectionViewCell.swift in Sources */,
 				80DC3465264D67E400859D7F /* FilmItem+CoreDataClass.swift in Sources */,
+				80F2168F2651994900ED1182 /* NetworkService.swift in Sources */,
 				80DC3484264E4D8E00859D7F /* NSSetExtensions.swift in Sources */,
-				80DC349A264E76F600859D7F /* Reachability.swift in Sources */,
+				80F2166F265198F600ED1182 /* Reachability.swift in Sources */,
 				21D43F5425F0E09C0095AD0B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

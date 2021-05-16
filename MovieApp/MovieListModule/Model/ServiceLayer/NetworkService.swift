@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol NetworkServiceProtocol {
     func fetchData(type: String, currentPage: Int, completion: @escaping (Result<[Film], Error>) -> Void)
@@ -15,20 +14,9 @@ protocol NetworkServiceProtocol {
 
 ///
 class NetworkService: NetworkServiceProtocol {
-    let coreDataService = CoreDataService()
-
-    init() {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        else {
-            return
-        }
-        let sceneDelegate = windowScene.delegate as? SceneDelegate
-        coreDataService.managedContext = sceneDelegate?.coreDataStack.persistentContainer.viewContext
-    }
-
     func fetchData(type: String, currentPage: Int, completion: @escaping (Result<[Film], Error>) -> Void) {
         if !Reachability.isConnectedToNetwork() {
-            let filmItems = coreDataService.getFilmItems()
+            let filmItems = CoreDataService.shared.getFilmItems()
             let films = filmItems.map { Film(from: $0) }.sorted(by: { $0.nameRu ?? "" < $1.nameRu ?? "" })
             completion(.success(films))
             return
@@ -50,7 +38,7 @@ class NetworkService: NetworkServiceProtocol {
 
                 completion(.success(sortedFilms))
                 DispatchQueue.main.async {
-                    self.coreDataService.save(films: sortedFilms)
+                    CoreDataService.shared.save(films: sortedFilms)
                 }
             } catch {
                 completion(.failure(error))

@@ -39,10 +39,18 @@ class CoordinatorTest: XCTestCase {
         coordinator.start()
         XCTAssertTrue(mockNavigationController.presentedVC is MovieListViewController)
     }
-    
+
     func testGoToDetailsCoordinator() {
-        
-        let film = Film(posterUrlPreview: "", nameRu: "", description: "", genres: [], countries: [], year: "", rating: "", filmId: 1)
+        let film = Film(
+            posterUrlPreview: "",
+            nameRu: "",
+            description: "",
+            genres: [],
+            countries: [],
+            year: "",
+            rating: "",
+            filmId: 1
+        )
         coordinator.detailsView(film: film)
         XCTAssertTrue(mockNavigationController.presentedVC is DetailsViewController)
     }
