@@ -13,6 +13,7 @@ protocol MovieListViewModelProtocol: AnyObject {
     var movieArray: [Film] { get set }
     var currentPage: Int { get set }
     var type: String { get set }
+    var goToDetails: ((Film) -> ())? { get }
 
     init(
         networkService: NetworkServiceProtocol,

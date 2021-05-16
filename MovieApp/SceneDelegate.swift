@@ -16,15 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
 
-            let assemblyBuilder = AssemblyModelBuilder()
-            let movieListVC = assemblyBuilder.createMovieListModule()
-            let navigationController = UINavigationController(rootViewController: movieListVC)
+            let navigationController = UINavigationController()
 
             coordinator = MainCoordinator(navigationController: navigationController)
             coordinator?.start()
-
-            movieListVC.context = coreDataStack.persistentContainer.viewContext
-            CoreDataService.shared.managedContext = coreDataStack.persistentContainer.viewContext
 
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()

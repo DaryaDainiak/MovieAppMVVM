@@ -10,6 +10,10 @@ import UIKit
 
 /// MovieListViewController
 final class MovieListViewController: UIViewController {
+    // MARK: - Public Properties
+
+    var viewModel: MovieListViewModelProtocol!
+
     // MARK: - Private Properties
 
     private struct Consts {
@@ -42,12 +46,6 @@ final class MovieListViewController: UIViewController {
         return label
     }()
 
-    private var movieArray: [Film] = []
-    var context: NSManagedObjectContext!
-
-    var viewModel: MovieListViewModelProtocol!
-    weak var coordinator: MainCoordinator?
-
     // MARK: - Lifecycle
 
     init(viewModel: MovieListViewModelProtocol) {
@@ -68,11 +66,13 @@ final class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.accessibilityIdentifier = "mainView"
+        moviesTableView.accessibilityIdentifier = "MyTable"
+
         setUpFilterCollectionView()
         setUpMoviesTableView()
         setUpErrorView()
         setUpDelegate()
-//        type = filterTitle.filterArray[0].parameter ?? ""
         viewModel.getMovies(type: viewModel.type, currentPage: viewModel.currentPage)
     }
 
@@ -172,15 +172,9 @@ extension MovieListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        guard let viewModel = viewModel else { return }
-//        viewModel.selectedRow(atIndexPath: indexPath)
-//        guard let detailsViewModel = viewModel.viewModelForSelectedRow() else { return }
 
         let selectedMoview = viewModel.movieArray[indexPath.row]
-
-        coordinator?.detailsView(film: selectedMoview)
-//        let dvc = DetailsViewController(viewModel: detailsViewModel)
-//        navigationController?.pushViewController(dvc, animated: true)
+        viewModel.goToDetails?(selectedMoview)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

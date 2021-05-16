@@ -10,24 +10,30 @@ import UIKit
 
 ///
 class MainCoordinator: Coordinator {
-    private var moduleBuilder = AssemblyModelBuilder()
+    // MARK: - Private Properties
+
+    private var moduleBuilder: AssemblyModelBuilder?
+
+    // MARK: - Public Properties
 
     var childCoordinators: [Coordinator] = []
+
     var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        moduleBuilder = AssemblyModelBuilder(coordinator: self)
     }
 
+    // MARK: - Public Methods
+
     func start() {
-        let movieVC = moduleBuilder.createMovieListModule()
-        movieVC.coordinator = self
+        guard let movieVC = moduleBuilder?.createMovieListModule() else { return }
         navigationController.pushViewController(movieVC, animated: false)
     }
 
     func detailsView(film: Film) {
-        let detailsVC = moduleBuilder.createDetailsModule(selectedMovie: film)
-        detailsVC.coordinator = self
+        guard let detailsVC = moduleBuilder?.createDetailsModule(selectedMovie: film) else { return }
         navigationController.pushViewController(detailsVC, animated: true)
     }
 }

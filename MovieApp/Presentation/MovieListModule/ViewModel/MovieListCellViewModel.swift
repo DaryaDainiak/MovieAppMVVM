@@ -9,7 +9,11 @@ import Foundation
 
 ///
 class MovieListCellViewModel: MovieListCellViewModelProtocol {
+    // MARK: - Private Properties
+
     private var movie: Film
+
+    // MARK: - Public Properties
 
     var image: String {
         return String(describing: movie.posterUrlPreview)
