@@ -12,10 +12,7 @@ import UIKit
 final class CoreDataService {
     // MARK: - Public Properties
 
-    static let shared = CoreDataService()
     var managedContext: NSManagedObjectContext?
-
-    private init() {}
 
     // MARK: - Public Methods
 
