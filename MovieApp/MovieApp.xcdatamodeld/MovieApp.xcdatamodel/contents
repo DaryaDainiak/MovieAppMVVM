@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CountryItem" representedClassName="CountryItem" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <relationship name="film" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FilmItem" inverseName="country" inverseEntity="FilmItem"/>
+    </entity>
+    <entity name="FilmItem" representedClassName=".FilmItem" syncable="YES">
+        <attribute name="countries" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="filmId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="genres" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="nameRu" optional="YES" attributeType="String"/>
+        <attribute name="posterUrlPreview" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="String"/>
+        <attribute name="year" optional="YES" attributeType="String"/>
+        <relationship name="country" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CountryItem" inverseName="film" inverseEntity="CountryItem"/>
+        <relationship name="genre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GenreItem" inverseName="film" inverseEntity="GenreItem"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="filmId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="GenreItem" representedClassName="GenreItem" syncable="YES">
+        <attribute name="genres" optional="YES" attributeType="String"/>
+        <relationship name="film" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FilmItem" inverseName="genre" inverseEntity="FilmItem"/>
+    </entity>
+    <elements>
+        <element name="FilmItem" positionX="-344.5846557617188" positionY="195.0165710449219" width="118.3477783203125" height="178"/>
+        <element name="GenreItem" positionX="-174.9522094726562" positionY="256.7539367675781" width="128" height="73"/>
+        <element name="CountryItem" positionX="-176.6586303710938" positionY="347.6695861816406" width="128" height="73"/>
+    </elements>
+</model>

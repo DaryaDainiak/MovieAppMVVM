@@ -8,16 +8,20 @@ import UIKit
 
 ///
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var coordinator: MainCoordinator?
     var window: UIWindow?
+    let coreDataStack = CoreDataStack()
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
 
-            let vc = MovieListViewController()
-            let navController = UINavigationController(rootViewController: vc)
+            let navigationController = UINavigationController()
 
-            window?.rootViewController = navController
+            coordinator = MainCoordinator(navigationController: navigationController)
+            coordinator?.start()
+
+            window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }
 
@@ -45,5 +49,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+        coreDataStack.saveContext()
     }
 }

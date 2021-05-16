@@ -8,6 +8,7 @@ target 'MovieApp' do
   # Pods for MovieApp
  pod 'SwiftLint'
  pod 'SwiftFormat/CLI'
+ pod 'Kingfisher'
  
  post_install do |installer|
       installer.pods_project.targets.each do |target|
