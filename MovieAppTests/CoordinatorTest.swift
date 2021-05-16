@@ -9,12 +9,41 @@
 import XCTest
 
 ///
+class MockNavigationController: UINavigationController {
+    var presentedVC: UIViewController?
+
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        presentedVC = viewController
+        super.pushViewController(viewController, animated: true)
+    }
+}
+
+///
 class CoordinatorTest: XCTestCase {
+    var coordinator: MainCoordinator!
+    var mockNavigationController: MockNavigationController!
+    var assemblyBuilder: AssemblyModelBuilder!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mockNavigationController = MockNavigationController()
+        coordinator = MainCoordinator(navigationController: mockNavigationController)
+//        assemblyBuilder = AssemblyModelBuilder(coordinator: coordinator)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        coordinator = nil
+        assemblyBuilder = nil
+    }
+
+    func testStartCoordinator() {
+        coordinator.start()
+        XCTAssertTrue(mockNavigationController.presentedVC is MovieListViewController)
+    }
+    
+    func testGoToDetailsCoordinator() {
+        
+        let film = Film(posterUrlPreview: "", nameRu: "", description: "", genres: [], countries: [], year: "", rating: "", filmId: 1)
+        coordinator.detailsView(film: film)
+        XCTAssertTrue(mockNavigationController.presentedVC is DetailsViewController)
     }
 }
