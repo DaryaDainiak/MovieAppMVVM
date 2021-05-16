@@ -21,8 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             coordinator = MainCoordinator(navigationController: navigationController)
             coordinator?.start()
 
-            CoreDataService.shared.managedContext = coreDataStack.persistentContainer.viewContext
-
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }

@@ -10,9 +10,9 @@ import UIKit
 
 ///
 class CoreDataService {
-    private init() {}
+//    private init() {}
 
-    static let shared = CoreDataService()
+//    static let shared = CoreDataService()
     var managedContext: NSManagedObjectContext?
 
     func save(films: [Film]) {
