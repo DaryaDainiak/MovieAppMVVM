@@ -9,32 +9,9 @@
 import XCTest
 
 ///
-class MockDetailsNetworkService: NetworkServiceProtocol {
-    var filmDetails: FilmDetails!
-
-    init() {}
-
-    convenience init(filmDetails: FilmDetails?) {
-        self.init()
-        self.filmDetails = filmDetails
-    }
-
-    func fetchData(type: String, currentPage: Int, completion: @escaping (Result<[Film], Error>) -> Void) {}
-
-    func fetchDescription(id: Int32?, completion: @escaping (Result<FilmDetails?, Error>) -> Void) {
-        if let filmDetails = filmDetails {
-            completion(.success(filmDetails))
-        } else {
-            let error = NSError(domain: "", code: 0, userInfo: nil)
-            completion(.failure(error))
-        }
-    }
-}
-
-///
 class DetailsViewModelTest: XCTestCase {
     var viewModel: DetailsViewModel!
-    var networkService: NetworkServiceProtocol!
+    var movieListUseCase: MovieListUseCaseProtocol!
     var id = 0
     var selectedMovie: Film?
 
@@ -53,7 +30,7 @@ class DetailsViewModelTest: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        networkService = nil
+        movieListUseCase = nil
         viewModel = nil
     }
 
@@ -61,10 +38,10 @@ class DetailsViewModelTest: XCTestCase {
         let filmDetails = FilmDetails(data: DataClass(description: "Foo"))
         var catchFilmDetails: FilmDetails?
 
-        networkService = MockDetailsNetworkService(filmDetails: filmDetails)
-        viewModel = DetailsViewModel(networkService: networkService, selectedMovie: selectedMovie)
+        movieListUseCase = MockMovieListUseCase(filmDetails: filmDetails)
+        viewModel = DetailsViewModel(movieListUseCase: movieListUseCase, selectedMovie: selectedMovie)
 
-        networkService.fetchDescription(id: selectedMovie?.filmId) { result in
+        movieListUseCase.fetchDescription(id: selectedMovie?.filmId) { result in
             switch result {
             case let .success(details):
                 catchFilmDetails = details
@@ -79,10 +56,10 @@ class DetailsViewModelTest: XCTestCase {
     func testGetErrorFilmDetails() {
         var catchError: Error?
 
-        networkService = MockDetailsNetworkService()
-        viewModel = DetailsViewModel(networkService: networkService, selectedMovie: selectedMovie)
+        movieListUseCase = MockMovieListUseCase()
+        viewModel = DetailsViewModel(movieListUseCase: movieListUseCase, selectedMovie: selectedMovie)
 
-        networkService.fetchDescription(id: selectedMovie?.filmId) { result in
+        movieListUseCase.fetchDescription(id: selectedMovie?.filmId) { result in
             switch result {
             case .success:
                 break

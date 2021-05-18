@@ -9,32 +9,9 @@
 import XCTest
 
 ///
-class MockNetworkService: NetworkServiceProtocol {
-    var films: [Film]!
-
-    init() {}
-
-    convenience init(films: [Film]?) {
-        self.init()
-        self.films = films
-    }
-
-    func fetchData(type: String, currentPage: Int, completion: @escaping (Result<[Film], Error>) -> Void) {
-        if let films = films {
-            completion(.success(films))
-        } else {
-            let error = NSError(domain: "", code: 0, userInfo: nil)
-            completion(.failure(error))
-        }
-    }
-
-    func fetchDescription(id: Int32?, completion: @escaping (Result<FilmDetails?, Error>) -> Void) {}
-}
-
-///
 class MovieViewModelTest: XCTestCase {
     var viewModel: MovieListViewModel!
-    var networkService: NetworkServiceProtocol!
+    var movieListUseCase: MovieListUseCaseProtocol!
     var type: String = ""
     var currentPage = 0
     var movieArray: [Film] = []
@@ -54,17 +31,17 @@ class MovieViewModelTest: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        networkService = nil
+        movieListUseCase = nil
         viewModel = nil
     }
 
     func testGetSuccessMovies() {
-        networkService = MockNetworkService(films: movieArray)
-        viewModel = MovieListViewModel(networkService: networkService, type: type)
+        movieListUseCase = MockMovieListUseCase(films: movieArray)
+        viewModel = MovieListViewModel(movieListUseCase: movieListUseCase, type: type)
 
         var catchMovies: [Film]?
 
-        networkService.fetchData(type: type, currentPage: currentPage) { result in
+        movieListUseCase.fetchData(type: type, currentPage: currentPage) { result in
             switch result {
             case let .success(films):
                 catchMovies = films
@@ -78,12 +55,12 @@ class MovieViewModelTest: XCTestCase {
     }
 
     func testGetErrorMovies() {
-        networkService = MockNetworkService()
-        viewModel = MovieListViewModel(networkService: networkService, type: type)
+        movieListUseCase = MockMovieListUseCase()
+        viewModel = MovieListViewModel(movieListUseCase: movieListUseCase, type: type)
 
         var catchError: Error?
 
-        networkService.fetchData(type: type, currentPage: currentPage) { result in
+        movieListUseCase.fetchData(type: type, currentPage: currentPage) { result in
             switch result {
             case .success:
                 break

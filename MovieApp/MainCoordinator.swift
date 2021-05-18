@@ -16,9 +16,9 @@ class MainCoordinator: Coordinator {
 
     // MARK: - Public Properties
 
-    var childCoordinators: [Coordinator] = []
+    private(set) var childCoordinators: [Coordinator] = []
 
-    var navigationController: UINavigationController
+    private(set) var navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

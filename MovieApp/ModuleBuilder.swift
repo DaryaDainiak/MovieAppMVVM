@@ -16,19 +16,33 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
     // MARK: - Public Properties
 
     let coordinator: MainCoordinator
+    let movieListUseCase: MovieListUseCaseProtocol
 
     init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
+
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        let managedContext = sceneDelegate?.coreDataStack.persistentContainer.viewContext
+        let coreDataService = CoreDataService(managedContext: managedContext)
+
+        let networkService = NetworkService()
+
+        movieListUseCase = MovieListUseCase(
+            networkService: networkService,
+            coreDataService: coreDataService
+        )
     }
 
     // MARK: - Public Methods
 
     func createMovieListModule() -> MovieListViewController {
-        let networkService = NetworkService()
         let filter = FilterTitle()
         let type = filter.filterArray[0].parameter ?? ""
+
         let viewModel = MovieListViewModel(
-            networkService: networkService,
+            movieListUseCase: movieListUseCase,
             type: type
         )
         viewModel.goToDetails = { [weak self] film in
@@ -40,9 +54,8 @@ final class AssemblyModelBuilder: AssemblyBuilderProtocol {
     }
 
     func createDetailsModule(selectedMovie: Film) -> DetailsViewController {
-        let networkService = NetworkService()
         let viewModel = DetailsViewModel(
-            networkService: networkService,
+            movieListUseCase: movieListUseCase,
             selectedMovie: selectedMovie
         )
 
