@@ -21,16 +21,16 @@ final class MovieListViewModel: MovieListViewModelProtocol {
 
     // MARK: - Private Properties
 
-    private let networkService: NetworkServiceProtocol!
+    private let movieListUseCase: MovieListUseCaseProtocol!
     private var selectedIndexPath: IndexPath?
 
     // MARK: - Lifecycle
 
     required init(
-        networkService: NetworkServiceProtocol,
+        movieListUseCase: MovieListUseCaseProtocol,
         type: String
     ) {
-        self.networkService = networkService
+        self.movieListUseCase = movieListUseCase
         self.type = type
     }
 
@@ -47,7 +47,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
 
     func viewModelForSelectedRow() -> DetailsViewModelProtocol? {
         guard let path = selectedIndexPath?.row else { return nil }
-        return DetailsViewModel(networkService: networkService, selectedMovie: movieArray[path])
+        return DetailsViewModel(movieListUseCase: movieListUseCase, selectedMovie: movieArray[path])
     }
 
     func selectedRow(atIndexPath indexPath: IndexPath) {
@@ -55,7 +55,7 @@ final class MovieListViewModel: MovieListViewModelProtocol {
     }
 
     func getMovies(type: String, currentPage: Int) {
-        networkService.fetchData(type: type, currentPage: currentPage) { [weak self] result in
+        movieListUseCase.fetchData(type: type, currentPage: currentPage) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case let .success(films):

@@ -8,11 +8,21 @@
 import CoreData
 import UIKit
 
+protocol CoreDataServiceProtocol {
+    var managedContext: NSManagedObjectContext? { get }
+    func save(films: [Film])
+    func getFilmItems() -> [FilmItem]
+}
+
 ///
-final class CoreDataService {
+final class CoreDataService: CoreDataServiceProtocol {
     // MARK: - Public Properties
 
-    var managedContext: NSManagedObjectContext?
+    private(set) var managedContext: NSManagedObjectContext?
+
+    init(managedContext: NSManagedObjectContext?) {
+        self.managedContext = managedContext
+    }
 
     // MARK: - Public Methods
 

@@ -16,7 +16,7 @@ protocol MovieListViewModelProtocol: AnyObject {
     var goToDetails: ((Film) -> ())? { get }
 
     init(
-        networkService: NetworkServiceProtocol,
+        movieListUseCase: MovieListUseCaseProtocol,
         type: String
     )
     func numberOfRows() -> Int

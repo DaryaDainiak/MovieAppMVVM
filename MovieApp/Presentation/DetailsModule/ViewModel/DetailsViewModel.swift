@@ -15,7 +15,7 @@ protocol DetailsViewModelProtocol: AnyObject {
     var selectedMovie: Film? { get set }
     var movieDetails: FilmDetails? { get set }
     init(
-        networkService: NetworkServiceProtocol,
+        movieListUseCase: MovieListUseCaseProtocol,
         selectedMovie: Film?
     )
     func getMovieDetails()
@@ -24,7 +24,7 @@ protocol DetailsViewModelProtocol: AnyObject {
 final class DetailsViewModel: DetailsViewModelProtocol {
     // MARK: - Private Properties
 
-    private let networkService: NetworkServiceProtocol!
+    private let movieListUseCase: MovieListUseCaseProtocol
 
     // MARK: - Public Properties
 
@@ -36,17 +36,17 @@ final class DetailsViewModel: DetailsViewModelProtocol {
     // MARK: - Lifecycle
 
     init(
-        networkService: NetworkServiceProtocol,
+        movieListUseCase: MovieListUseCaseProtocol,
         selectedMovie: Film?
     ) {
-        self.networkService = networkService
+        self.movieListUseCase = movieListUseCase
         self.selectedMovie = selectedMovie
     }
 
     // MARK: - Public Methods
 
     func getMovieDetails() {
-        networkService.fetchDescription(id: selectedMovie?.filmId) { [weak self] result in
+        movieListUseCase.fetchDescription(id: selectedMovie?.filmId) { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
